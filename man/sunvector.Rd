@@ -2,7 +2,7 @@
 \alias{sunvector}
 
 \title{
-Solar Vector
+Solar vector
 }
 \description{
 Calculates a unit vector in the direction of the sun from the observer position.
@@ -13,7 +13,7 @@ sunvector(jd, latitude, longitude, timezone)
 
 \arguments{
   \item{jd}{
-Julian day and decimal fraction.
+Julian Day and decimal fraction.
 }
   \item{latitude}{
 Latitude of observer in degrees and decimal fraction.
@@ -26,7 +26,7 @@ Time zone, west is negative.
 }
 }
 \details{
- To calculate the sunvector to the nearest hour, give the Julian day with a precission 
+ To calculate the sunvector to the nearest hour, give the Julian Day with a precission 
  better than 1/24; to approximate it to the nearest minute use decimal fractions smaller than 1/(24*60), and so on.
 
 }

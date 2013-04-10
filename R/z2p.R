@@ -2,7 +2,7 @@ z2p <-
 function(z,P0=101325,T0=288.15) {
 	if (nargs() < 1 ) {cat("USAGE: z2p(z [,P0,T0]) \ units = m, Pa, K"); return()}
 	Earth_G = 9.80665  		# Acceleration due to gravity (m s-2)
-	EarthR = 6.3756766E6    # Average earth's radius (m)
+	EarthR = 6.3756766E6    # Average earths radius (m)
 	Md = 28.966        		# Molecular weight of dry air
 	R_star = 8.3145        	# Universal gas constant J/molK
 	stlapse = -0.0065  		# standard lapse rate K/m

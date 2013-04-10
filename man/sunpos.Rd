@@ -1,7 +1,7 @@
 \name{sunpos}
 \alias{sunpos}
 \title{
-Azimuth and Zenith of the Sun  
+Azimuth and zenith of the Sun  
 }
 \description{
 Returns a matrix of azimuth and zenith angles of the sun given the unit vectors from the observer to the direction of the sun. 
@@ -32,7 +32,7 @@ Javier G. Corripio
 \code{\link{sunvector}},
 }
 \examples{
-## Julian day hourly intervals at spring equinox
+## Julian Day hourly intervals at spring equinox
 jd=JD(seq(ISOdate(2012,3,20,0),ISOdate(2012,3,20,23),by="hour"))
 
 ## sun position
@@ -41,7 +41,7 @@ sp=sunpos(sunvector(jd,46.813,9.844,1))
 ## daylight zenith<=90
 sp=sp[which(sp[,2]<=90),]
 
-## example 1
+## Plot the apparent solar path at Davos on the spring equinox
 ramp = colorRamp(c("red", "orange","yellow"))
 crmp=c(rgb(ramp(seq(1/6,1,1/6)), max = 255),rgb(ramp(seq(1,1/6,-1/6)), max = 255))
 plot(sp[,1],90-sp[,2],xlab='Azimuth',

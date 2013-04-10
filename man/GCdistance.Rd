@@ -1,7 +1,6 @@
 \name{GCdistance}
 \alias{GCdistance}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{Great Circle Distance}
+\title{Great circle distance}
 \description{Great circle or geodesic distance. }
 \usage{
 GCdistance(lat1,lon1,lat2,lon2)

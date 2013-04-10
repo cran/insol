@@ -1,12 +1,12 @@
 \name{declination}
 \alias{declination}
 \title{Declination}
-\description{Computes the declination of the Sun for a given julian day.}
+\description{Computes the declination of the Sun for a given Julian Day.}
 \usage{
 declination(jd)
 }
 \arguments{
-  \item{jd}{Julian Day}
+  \item{jd}{Julian Day.}
 }
 
 \value{ Declination in degrees and decimal fraction. }
@@ -29,8 +29,17 @@ declination(JDymd(2012,1,1))
 jdays=JD(ISOdate(2012,1:12,21))
 declination(jdays)
 
-# Plot daily changes in declination from 2012 to 2014
+## Find the solstices to the nearest hour
+jdays=JD(seq(ISOdate(2013,1,1),ISOdate(2013,12,31),by='hour'))
+decl=declination(jdays)
+wintersolstice=which(decl==min(decl))
+summersolstice=which(decl==max(decl))
+JD(jdays[c(summersolstice,wintersolstice)],inv=TRUE)
+
+
+## Plot daily changes in declination from 2012 to 2014
 jdays=JD(seq(ISOdate(2012,1,1),ISOdate(2014,12,31),by='day'))
 plot(declination(jdays),xlab='days from 2012-01-01',ylab='declination')
+
 
 }

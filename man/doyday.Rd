@@ -11,7 +11,7 @@ doyday(year, doy)
   \item{doy}{Day of the year [1:366].}
 }
 \value{
-returns an object of class POSIXlt.
+returns an object of class \code{POSIXlt}.
 }
 
 \author{ Javier G. Corripio }

@@ -4,16 +4,17 @@
 \docType{package}
 \title{Solar Radiation}
 
-\description{Calculates insolation on tilted surfaces, computes atmospheric transmittance 
-and related parameters such as: Earth radius vector, declination, sunset and sunrise, 
-daylength, equation of time, vector in the direction of the sun, vector normal to surface, and some atmospheric physics.}
+\description{Calculates insolation and cast shadows on tilted and irregular surfaces, 
+computes atmospheric transmittance and related parameters such as: Earth radius vector, 
+declination, sunset and sunrise, daylength, equation of time, vector in the direction of 
+the sun, vector normal to surface, and some atmospheric physics.}
 
 \details{
 \tabular{ll}{
 Package: \tab insol\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2012-04-25\cr
+Version: \tab 1.1\cr
+Date: \tab 2013-04-10\cr
 License: \tab GPL-2 \cr
 LazyLoad: \tab yes\cr
 }
@@ -44,7 +45,8 @@ Danby, J. M. Eqn. 6.16.4 in \emph{Fundamentals of Celestial Mechanics}, 2nd ed. 
 
 Meeus, J. 1999.  \emph{Astronomical Algorithms}. Willmann-Bell, Richmond, Virginia, USA.
 
-Reda, I. and Andreas, A. 2003. \emph{Solar Position Algorithm for Solar Radiation Applications}. 55 pp.; NREL Report No. TP-560-34302, Revised January 2008. 
+Reda, I. and Andreas, A. 2003. \emph{Solar Position Algorithm for Solar Radiation Applications}. 
+55 pp.; NREL Report No. TP-560-34302, Revised January 2008.
 \url{http://www.nrel.gov/docs/fy08osti/34302.pdf}
 
 

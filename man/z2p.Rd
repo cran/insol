@@ -2,7 +2,7 @@
 \alias{z2p}
 
 \title{
-Altitude to Pressure}
+Altitude to pressure}
 \description{
 Computes air pressure for a given altitude according to the standard atmosphere.
 }

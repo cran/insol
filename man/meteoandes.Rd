@@ -2,7 +2,7 @@
 \alias{meteoandes}
 \docType{data}
 \title{
-Mountain Meteorological Data
+Mountain meteorological data
 }
 \description{
 Meteorological data from an automatic weather station in the Central Andes of Chile.

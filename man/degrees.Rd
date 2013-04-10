@@ -13,8 +13,6 @@
 
 \value{Angle in degrees.}
 
-\author{Javier G. Corripio}
-
 \seealso{\code{\link{radians}}}
 
 \examples{

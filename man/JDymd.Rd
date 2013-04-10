@@ -1,13 +1,13 @@
 \name{JDymd}
 \alias{JDymd}
 \title{
-Julian Day
+Julian Day from yyyy, mm, dd
 }
 \description{
-Computes Julian Day from a given date
+Computes Julian Day from a given date.
 }
 \usage{
-JDymd(year,month,day,hour=12,minute=0,sec=0,tmz=0)
+JDymd(year,month,day,hour=12,minute=0,sec=0)
 }
 
 \arguments{
@@ -29,12 +29,10 @@ numeric year
   \item{sec}{
 0-59: seconds.
 }
-  \item{tmz}{
-time zone in hours, west is negative.
-}
+
 }
 \value{
-Julian Day, or number of days since January 1, 4713 BCE at noon UTC
+Julian Day, or number of days since January 1, 4713 BCE at noon UTC.
 }
 \references{
 Danby, J. M. Eqn. 6.16.4 in \emph{Fundamentals of Celestial Mechanics}, 2nd ed. Richmond, VA: Willmann-Bell, p. 207, 1988.
@@ -45,10 +43,15 @@ Danby, J. M. Eqn. 6.16.4 in \emph{Fundamentals of Celestial Mechanics}, 2nd ed. 
 Javier G. Corripio
 }
 \note{
-You may double like to double check the results here: \url{http://aa.usno.navy.mil/data/docs/JulianDate.php}
+You may like to double check the results here: \cr
+\url{http://aa.usno.navy.mil/data/docs/JulianDate.php}
 }
 
-\section{Warning }{This simplification is only valid between 1901 and 2099.} 
+\section{Warning }{
+This simplification is only valid between 1901 and 2099.
+To get correct values it is recommended to increase the number of digits to display:
+	options(digits=12)
+} 
 
 \seealso{
 \code{\link{JD}}

@@ -1,7 +1,7 @@
 \name{hourangle}
 \alias{hourangle}
 
-\title{Hour Angle}
+\title{Hour angle}
 \description{
 Hour angle, internal function for solar position.
 }
@@ -10,21 +10,17 @@ hourangle(jd, longitude, timezone)
 }
 
 \arguments{
-  \item{jd}{Julian Day}
+  \item{jd}{Julian Day.}
 
   \item{longitude}{
-Longitude
+Longitude.
 }  
 \item{timezone}{
-timezone in hours, west of Greenwich is negative
+Timezone in hours, west of Greenwich is negative.
 }
 }
 
 \value{
 Hour angle
-}
-
-\author{
-Javier G. Corripio
 }
 

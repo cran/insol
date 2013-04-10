@@ -2,7 +2,7 @@
 \alias{sunr}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Earth Radius Vector
+Earth radius vector
 }
 \description{
 Calculates the Earth radius vector.

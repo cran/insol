@@ -2,7 +2,7 @@
 \alias{rh2sh}
 
 \title{
-Relative Humidity to Specific Humidity
+Relative humidity to specific humidity
 }
 \description{
 Computes specific humidity from given relative humidity, temperature and pressure.

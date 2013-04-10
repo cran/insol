@@ -1,7 +1,7 @@
 \name{wvapsat}
 \alias{wvapsat}
 \title{
-Saturation Pressure of Water Vapor
+Saturation pressure of water vapor
 }
 \description{
 Computes the saturation pressure of water vapour in air over water or ice.
@@ -30,7 +30,7 @@ Javier G. Corripio
 }
 
 \examples{
-
+## Plot the differences saturation pressure over water and over ice
 plot(wvapsat(250:300), xlab='Temperature', ylab='saturation vapour pressure [hPa]')
 
 Tair=223:273

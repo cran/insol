@@ -10,8 +10,8 @@ function (lat, long, jd, tmz){
 		stndmeridian = tmz*15
 		deltaLatTime=long-stndmeridian
 		deltaLatTime = deltaLatTime * 24/360 
-		sunrise = 12*(1-omega/pi)-deltaLatTime-EqTime 
-		sunset = 12*(1+omega/pi)-deltaLatTime-EqTime
+		sunrise = 12*(1-omega/pi)-deltaLatTime-EqTime/60 
+		sunset = 12*(1+omega/pi)-deltaLatTime-EqTime/60
 		sunrise[omega==0]=NA
 		sunset[omega==0]=NA
 		return(round(cbind(sunrise,sunset,daylen),2))
