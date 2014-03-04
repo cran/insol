@@ -98,18 +98,23 @@ visibility=30
 RH=80
 tempK=288
 tmz=0
-jd=JDymd(2013,03,21)
+year=2013
+month=3
+day=21
+timeh=12
+jd=JDymd(year,month,day,hour=timeh)
 Iglobal=array(0,dim=dim(dem))
 deltat=0.5
 lat=28.135
 lon=-17.247
 dayl=daylength(lat,lon,jd,0)
 for (srs in seq(dayl[1],dayl[2],deltat)){
+	jd=JDymd(year,month,day,hour=srs)
 	sv=sunvector(jd,lat,lon,tmz)
 	hsh=hillshading(cgr,sv)
 	sh=doshade(dem,sv,cellsize)
 	zenith=sunpos(sv)[2]
-	Idirdif = insolation(zenith,jd,height,visibility,RH,tempK,0.02,0.15)
+	Idirdif = insolation(zenith,jd,height,visibility,RH,tempK,0.002,0.15)
 	## direct radiation modified by terrain + diffuse irradiation (skyviewfactor ignored)
 	## values in J/m^2
 	Iglobal = Iglobal + (Idirdif[,1] * hsh + Idirdif[,2] )*3600*deltat	
@@ -131,28 +136,33 @@ plot(dem)
 cgr=cgrad(dem)
 demm=raster:::as.matrix(dem)
 dl=res(dem)[1]
-## Isolation at 30 min interval over the length of the day 
+## Isolation at 30 min interval over the length of the day
 ## RH and temp would cahnge over the dy, here we use a constant value for simplicity
 height=750
 visibility=30
 RH=80
 tempK=288
 tmz=0
-jd=JDymd(2013,03,21)
+year=2013
+month=3
+day=21
+timeh=12
+jd=JDymd(year,month,day,hour=timeh)
 Iglobal=array(0,dim=dim(demm))
 deltat=0.5
 lat=28.135
 lon=-17.247
 dayl=daylength(lat,lon,jd,0)
 for (srs in seq(dayl[1],dayl[2],deltat)){
+	jd=JDymd(year,month,day,hour=srs)
 	sv=sunvector(jd,lat,lon,tmz)
 	hsh=hillshading(cgr,sv)
 	sh=doshade(demm,sv,dl)
 	zenith=sunpos(sv)[2]
-	Idirdif = insolation(zenith,jd,height,visibility,RH,tempK,0.02,0.15)
+	Idirdif = insolation(zenith,jd,height,visibility,RH,tempK,0.002,0.15)
 	## direct radiation modified by terrain + diffuse irradiation (skyviewfactor ignored)
 	## values in J/m^2
-	Iglobal = Iglobal + (Idirdif[,1] * hsh + Idirdif[,2] )*3600*deltat	
+	Iglobal = Iglobal + (Idirdif[,1] * hsh + Idirdif[,2] )*3600*deltat
 }
 ## rasterize to plot nicely
 Iglobal=raster(Iglobal,crs=projection(dem))
@@ -161,7 +171,7 @@ plot(Iglobal*1e-6,col=grey(1:100/100),
  	legend.args=list(text=expression(paste('Insolation MJ ',m^-2)), side=4,line=2.5))
 contour(dem,lwd=.5,col='sienna1',add=TRUE,levels=seq(0,2500,500))
 contour(dem,lwd=.25,col='sienna1',add=TRUE,levels=seq(0,2500,50),drawlabels=FALSE)
-unlink(demfile) 
+unlink(demfile)
 }
 
 }

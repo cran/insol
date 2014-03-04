@@ -1,4 +1,4 @@
-importFrom("raster", projection, extent, raster, res)
+import(methods)
 useDynLib(insol)
 exportPattern("^[^\\.]")
 

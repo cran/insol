@@ -7,7 +7,7 @@ function(dem, dlx=0, dly=dlx, cArea=FALSE){
 	if (class(dem)=="RasterLayer") {
 		dlx = res(dem)[1]
 		dly = res(dem)[2]
-		dem=raster:::as.matrix(dem)
+		dem=raster::as.matrix(dem)
 	}
 	if (dlx == 0){
 				cat("Input data is not a RasterLayer, then I need the DEM resolution dlx \n")

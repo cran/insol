@@ -12,7 +12,7 @@ doshade <- function(dem,sv,dl=0,sombra=dem) {
 			dproj=projection(dem)
 			dext=extent(dem)
 			dl = res(dem)[1]
-			dem=raster:::as.matrix(dem)
+			dem=raster::as.matrix(dem)
 		}
 	cols=ncol(dem)
 	rows=nrow(dem)

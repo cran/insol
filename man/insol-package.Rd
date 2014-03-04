@@ -13,8 +13,8 @@ the sun, vector normal to surface, and some atmospheric physics.}
 \tabular{ll}{
 Package: \tab insol\cr
 Type: \tab Package\cr
-Version: \tab 1.1\cr
-Date: \tab 2013-04-10\cr
+Version: \tab 1.1.1\cr
+Date: \tab 2014-03-04\cr
 License: \tab GPL-2 \cr
 LazyLoad: \tab yes\cr
 }
