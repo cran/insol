@@ -15,7 +15,7 @@ GCdistance(lat1,lon1,lat2,lon2)
 Distance between origin and destination points in metres.
 }
 \references{
-\url{http://williams.best.vwh.net/avform.htm#Dist}, 
+\url{https://edwilliams.org/avform.htm}, 
 
 \url{http://mathworld.wolfram.com/GreatCircle.html}.
 }
@@ -28,10 +28,10 @@ GCdistance(0,0,0,180)*2
 
 # distance between the center of US states 
 data(state)
-ddd=matrix(nrow=50,ncol=50,dimnames=list(state.name,state.name))
+ddd = matrix(nrow=50,ncol=50,dimnames=list(state.name,state.name))
 for (i in 1:50){
 	for (j in 1:50){
-		distij=GCdistance(state.center$y[i],state.center$x[i],
+		distij = GCdistance(state.center$y[i],state.center$x[i],
 			state.center$y[j],state.center$x[j])
 		# round to miles
 		ddd[i,j]=round(distij/1609.344,2)

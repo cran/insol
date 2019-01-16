@@ -28,8 +28,8 @@ Day of the year [1:366].
 \code{\link{ISOdate}}
 }
 \examples{
-daydoy(2012,2,27:29)
-daydoy(ISOdate(2012,2,27:29))
+daydoy(2019,2,27:29)
+daydoy(ISOdate(2019,2,27:29))
 
 
 }

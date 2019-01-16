@@ -2,8 +2,8 @@ insolation <-
 function(zenith,jd,height,visibility,RH,tempK,O3,alphag) {
 	if (nargs() < 8 ) { cat("USAGE: insolation(zenith,jd,height,visibility,RH,tempK,O3,alphag)"); return() } 
 	if (min(tempK,na.rm=TRUE) < 153) { print("temperature should be in Kelvin"); return() }
-	Isc = 1361.0   			# solar constant (Wm^(-2)) (1)
-	zenith[zenith>90]=90
+	Isc = 1361.8   			# solar constant (Wm^(-2)) (1)
+# 	zenith[zenith>90] = 90
 	theta = radians(zenith)
 	ssctalb = 0.9  # single scattering albedo (aerosols)(Iqbal, 1983)
 	Fc = 0.84      # ratio of forward to total energy scattered (Iqbal, 1983)
@@ -31,6 +31,8 @@ function(zenith,jd,height,visibility,RH,tempK,O3,alphag) {
 	alpha_atmos = 0.0685+(1.0-Fc)*(1.0-tauas)
 	Idm = (In*cos(theta)+Idr+Ida)*alphag*alpha_atmos/(1.0-alphag*alpha_atmos)
 	Id = Idr+Ida+Idm
+	In[zenith>90] = 0
+	Id[zenith>90] = 0
 	return(cbind(In,Id))
 }
 

@@ -40,7 +40,7 @@ normalvector(45,180)
 normalvector(45,seq(90,270,45))
 
 # Angle of incidence of the sun on a tilted surface 15 degrees south on March at Davos
-jd=JD(seq(ISOdate(2012,3,20,0),ISOdate(2012,3,20,23),by="hour"))
+jd = JD(seq(ISOdate(2019,3,20,0),ISOdate(2019,3,20,23),by="hour"))
 degrees(acos(sunvector(jd,46.813,9.844,1) \%*\% as.vector(normalvector(15,180))))
 
 }

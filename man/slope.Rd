@@ -26,14 +26,14 @@ A matrix of slope values for all grid cells.
 }
 \examples{
 # Calculate the slope of a rough mountain area in the pyrinees
-zipfile=tempfile()
-download.file("http://www.meteoexploration.com/R/insol/data/dempyrenees.asc.zip",zipfile)
-header=read.table(unz(zipfile,'dempyrenees.asc'),nrows=6)
+zipfile = tempfile()
+download.file("https://meteoexploration.com/R/insol/data/dempyrenees.asc.zip",zipfile)
+header = read.table(unz(zipfile,'dempyrenees.asc'),nrows=6)
 dem = read.table(unz(zipfile,'dempyrenees.asc'),skip=6)
-dem=as.matrix(dem)
+dem = as.matrix(dem)
 unlink(zipfile)
-cellsize=header[5,2]
-slopedem=slope(cgrad(dem,cellsize),degrees=TRUE)
+cellsize = header[5,2]
+slopedem = slope(cgrad(dem,cellsize),degrees=TRUE)
 image(t(slopedem[nrow(slopedem):1,]),col=grey(100:1/100))
 
 
@@ -41,13 +41,13 @@ image(t(slopedem[nrow(slopedem):1,]),col=grey(100:1/100))
 \dontrun{
 require(rgdal)
 require(raster)
-demfile=tempfile()
-download.file("http://www.meteoexploration.com/R/insol/data/dempyrenees.tif",demfile)
-dem=raster(demfile)
-slopedem=slope(cgrad(dem),degrees=TRUE)
-slopedem=raster(slopedem,crs=projection(dem))
-extent(slopedem)=extent(dem)
-plot(slopedem,col=grey(100:1/100))
+demfile = tempfile()
+download.file("https://meteoexploration.com/R/insol/data/dempyrenees.tif",demfile)
+dem = raster(demfile)
+slopedem = slope(cgrad(dem),degrees=TRUE)
+slopedem = raster(slopedem,crs=projection(dem))
+extent(slopedem) = extent(dem)
+plot(slopedem,col = grey(100:1/100))
 unlink(demfile)
 }
 }

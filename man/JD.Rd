@@ -31,7 +31,7 @@ Javier G. Corripio
 }
 \note{
 You may like to double check the results here: \cr
-\url{http://aa.usno.navy.mil/data/docs/JulianDate.php}
+\url{https://ssd.jpl.nasa.gov/tc.cgi}
 
 To get correct values it is recommended to increase the number of digits to display:
 	options(digits=12)
@@ -41,14 +41,7 @@ To get correct values it is recommended to increase the number of digits to disp
 }
 \examples{
 JD(Sys.time())
-JD(seq(ISOdate(2012,1,21),ISOdate(2012,12,21),by='month'))
-
-## Find the solstices to the nearest hour
-jdays=JD(seq(ISOdate(2013,1,1),ISOdate(2013,12,31),by='hour'))
-decl=declination(jdays)
-wintersolstice=which(decl==min(decl))
-summersolstice=which(decl==max(decl))
-JD(jdays[c(summersolstice,wintersolstice)],inv=TRUE)
+JD(seq(ISOdate(2019,1,21),ISOdate(2019,12,21),by='month'))
 
 }
 

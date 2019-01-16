@@ -27,16 +27,16 @@ Journal of Geographical Information Science} 17(1), 1-23.
 }
 \author{Javier G. Corripio}
 \note{
-You may like to double check at: \url{http://aa.usno.navy.mil/data/}
+You may like to double check at: \url{https://www.esrl.noaa.gov/gmd/grad/solcalc/azel.html}
 }
 
 \seealso{\code{\link{declination}}, \code{\link{eqtime}} }
 \examples{
-daylength(47,11,JDymd(2012,1,1,12),1)
+daylength(47,11,JDymd(2019,1,1,12),1)
 daylength(c(47,75),11,2456282,1)
 
-# Daylength for the whole 2012 year
-jd2012=JD(seq(ISOdate(2012,1,1),ISOdate(2012,12,31),by='day'))
-plot(daylength(47,11,jd2012,1)[,3],xlab='Day of the year',ylab='day length [h]',ylim=c(0,24))
+# Daylength for the whole 2019 year
+jd2019=JD(seq(ISOdate(2019,1,1),ISOdate(2019,12,31),by='day'))
+plot(daylength(47,11,jd2019,1)[,3],xlab='Day of the year',ylab='day length [h]',ylim=c(0,24))
 
 }

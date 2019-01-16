@@ -33,7 +33,7 @@ Javier G. Corripio
 ## Plot the differences saturation pressure over water and over ice
 plot(wvapsat(250:300), xlab='Temperature', ylab='saturation vapour pressure [hPa]')
 
-Tair=223:273
+Tair = 223:273
 plot(Tair,wvapsat(Tair),ty='l',lwd=2,col=4,xlab='Temperature', 
 	ylab='saturation vapour pressure [hPa]')
 lines(Tair,wvapsat(Tair,ice=1),col=8)

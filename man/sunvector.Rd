@@ -49,7 +49,7 @@ Javier G. Corripio
 # Current solar vector at Greenwich observatory
 sunvector(JD(Sys.time()),51.4778,-0.0017,0)
 
-juneday=JD(seq(ISOdate(2012,6,21,0),ISOdate(2012,6,21,23,30),by='30 min'))
+juneday = JD(seq(ISOdate(2019,6,21,0),ISOdate(2019,6,21,23,30),by='30 min'))
 \dontrun{ 
 # Path of the sun over Greenwich in summer
 require(scatterplot3d)

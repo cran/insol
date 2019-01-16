@@ -37,14 +37,13 @@ Julian Day, or number of days since January 1, 4713 BCE at noon UTC.
 \references{
 Danby, J. M. Eqn. 6.16.4 in \emph{Fundamentals of Celestial Mechanics}, 2nd ed. Richmond, VA: Willmann-Bell, p. 207, 1988.
 
-\url{http://scienceworld.wolfram.com/astronomy/JulianDate.html}
 }
 \author{
 Javier G. Corripio
 }
 \note{
 You may like to double check the results here: \cr
-\url{http://aa.usno.navy.mil/data/docs/JulianDate.php}
+\url{https://ssd.jpl.nasa.gov/tc.cgi}
 }
 
 \section{Warning }{
@@ -57,7 +56,7 @@ To get correct values it is recommended to increase the number of digits to disp
 \code{\link{JD}}
 }
 \examples{
-JDymd(2012,3,20,12)
+JDymd(2019,3,20,12)
 
 print(paste('Number of days since the beginning of the century (1/1/2001):',
 	JD(Sys.time())-JDymd(2001,1,1,0)))

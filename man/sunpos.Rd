@@ -33,17 +33,17 @@ Javier G. Corripio
 }
 \examples{
 ## Julian Day hourly intervals at spring equinox
-jd=JD(seq(ISOdate(2012,3,20,0),ISOdate(2012,3,20,23),by="hour"))
+jd = JD(seq(ISOdate(2019,3,20,0),ISOdate(2019,3,20,23),by="hour"))
 
 ## sun position
-sp=sunpos(sunvector(jd,46.813,9.844,1))
+sp = sunpos(sunvector(jd,46.813,9.844,1))
 
 ## daylight zenith<=90
-sp=sp[which(sp[,2]<=90),]
+sp = sp[which(sp[,2]<=90),]
 
 ## Plot the apparent solar path at Davos on the spring equinox
 ramp = colorRamp(c("red", "orange","yellow"))
-crmp=c(rgb(ramp(seq(1/6,1,1/6)), max = 255),rgb(ramp(seq(1,1/6,-1/6)), max = 255))
+crmp = c(rgb(ramp(seq(1/6,1,1/6)), max = 255),rgb(ramp(seq(1,1/6,-1/6)), max = 255))
 plot(sp[,1],90-sp[,2],xlab='Azimuth',
 	ylab='Elevation',main='Apparent solar path at Davos on the spring equinox',
 	pch=20,col=crmp,cex=(300-sp[,2])/90)

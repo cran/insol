@@ -29,32 +29,32 @@ Aspect or orientation of the slope.
 }
 \examples{
 # Create a west-east facing ramp
-slpwe=rep(1,10)  \%o\% c(1:5,4:1)
+slpwe = rep(1,10)  \%o\% c(1:5,4:1)
 # calculate the aspect at every node or grid cell (it should be 270 or 90 degrees):
-cgr=cgrad(slpwe,1)
+cgr = cgrad(slpwe,1)
 aspect(cgr,degrees=TRUE)
 
 # Calculate the aspect of a rough mountain area in the pyrinees
-zipfile=tempfile()
-download.file("http://www.meteoexploration.com/R/insol/data/dempyrenees.asc.zip",zipfile)
-header=read.table(unz(zipfile,'dempyrenees.asc'),nrows=6)
+zipfile = tempfile()
+download.file("https://meteoexploration.com/R/insol/data/dempyrenees.asc.zip",zipfile)
+header = read.table(unz(zipfile,'dempyrenees.asc'),nrows=6)
 dem = read.table(unz(zipfile,'dempyrenees.asc'),skip=6)
-dem=as.matrix(dem)
+dem = as.matrix(dem)
 unlink(zipfile)
-cellsize=header[5,2]
-aspectdem=aspect(cgrad(dem,cellsize),degrees=TRUE)
+cellsize = header[5,2]
+aspectdem = aspect(cgrad(dem,cellsize),degrees=TRUE)
 image(t(aspectdem[nrow(aspectdem):1,]),col=grey(1:100/100))
 
 
 \dontrun{ ## raster package display nicer than image and handles projections:
 require(rgdal)
 require(raster)
-demfile=tempfile()
-download.file("http://www.meteoexploration.com/R/insol/data/dempyrenees.tif",demfile)
-dem=raster(demfile)
-aspectdem=aspect(cgrad(dem),degrees=TRUE)
-aspectdem=raster(aspectdem,crs=projection(dem))
-extent(aspectdem)=extent(dem)
+demfile = tempfile()
+download.file("https://meteoexploration.com/R/insol/data/dempyrenees.tif",demfile)
+dem = raster(demfile)
+aspectdem = aspect(cgrad(dem),degrees=TRUE)
+aspectdem = raster(aspectdem,crs=projection(dem))
+extent(aspectdem) = extent(dem)
 plot(aspectdem,col=grey(1:100/100))
 unlink(demfile)
 }

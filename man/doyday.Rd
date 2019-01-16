@@ -20,9 +20,9 @@ returns an object of class \code{POSIXlt}.
 \code{\link{as.POSIXlt}}
 }
 \examples{
-doyday(2012,58:65)
+doyday(2019,58:65)
 
-doyday(2011.5)
+doyday(2019.5)
 
-doyday(2012+seq(55,65)/366)
+
 }

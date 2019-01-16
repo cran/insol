@@ -13,8 +13,8 @@ the sun, vector normal to surface, and some atmospheric physics.}
 \tabular{ll}{
 Package: \tab insol\cr
 Type: \tab Package\cr
-Version: \tab 1.1.1\cr
-Date: \tab 2014-03-04\cr
+Version: \tab 1.2\cr
+Date: \tab 2019-01-16\cr
 License: \tab GPL-2 \cr
 LazyLoad: \tab yes\cr
 }
@@ -25,7 +25,7 @@ Javier G. Corripio
 
 Maintainer: Javier G. Corrripio <jgc@meteoexploration.com>
 
-Additional information: \url{http://www.meteoexploration.com/R/insol/}
+Additional information: \url{https://meteoexploration.com/R/insol/}
 }
 \references{
 
@@ -47,13 +47,9 @@ Meeus, J. 1999.  \emph{Astronomical Algorithms}. Willmann-Bell, Richmond, Virgin
 
 Reda, I. and Andreas, A. 2003. \emph{Solar Position Algorithm for Solar Radiation Applications}. 
 55 pp.; NREL Report No. TP-560-34302, Revised January 2008.
-\url{http://www.nrel.gov/docs/fy08osti/34302.pdf}
+\url{https://www.nrel.gov/docs/fy08osti/34302.pdf}
 
-
-\url{http://www.esrl.noaa.gov/gmd/grad/solcalc/calcdetails.html}
-
-\url{http://scienceworld.wolfram.com/astronomy/JulianDate.html}
-
+\url{https://www.esrl.noaa.gov/gmd/grad/solcalc/calcdetails.html}
 
 }
 

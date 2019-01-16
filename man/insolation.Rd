@@ -20,7 +20,7 @@ insolation(zenith, jd, height, visibility, RH, tempK, O3, alphag)
   \item{O3}{Ozone thickness [m]. }
   \item{alphag}{Albedo of the surrounding terrain [0 to 1]. }
 }
-\details{ See \url{http://disc.sci.gsfc.nasa.gov/Aura/data-holdings/OMI/omto3_v003.shtml} for ozone data.}
+\details{ See \url{https://disc.gsfc.nasa.gov/datasets?page=1&source=AURA\%20OMI} for ozone data.}
 \value{
 Returns a two column matrix of irradiance values.  The first column is direct radiation, the second is diffuse radiation.
 }
@@ -36,8 +36,8 @@ Iqbal, M. (1983) \emph{An Introduction to Solar Radiation}, Academic Press, Toro
 \seealso{ \code{\link{doshade}}, \code{\link{hillshading}}, \code{\link{sunvector}} }
 
 \examples{
-insolation(30,2456007,3200,28,60,278.15,0.02,0.2)
-insolation(30,JDymd(2012,6,21),3200,28,60,278.15,0.02,0.2)
+insolation(30,2458656,3200,28,60,278.15,0.003,0.2)
+insolation(30,JDymd(2019,6,21),3200,28,60,278.15,0.003,0.2)
 
 # Compare measured and modelled insolation
 
@@ -45,9 +45,9 @@ insolation(30,JDymd(2012,6,21),3200,28,60,278.15,0.02,0.2)
 data(meteoandes)
 
 # Get zenith angle for every time step
-meteodate=as.POSIXct(strptime(paste(meteoandes$year,meteoandes$doy,
+meteodate = as.POSIXct(strptime(paste(meteoandes$year,meteoandes$doy,
 	meteoandes$hh,meteoandes$mm),format="\%Y \%j \%H \%M"))
-metjd=JD(meteodate)
+metjd = JD(meteodate)
 
 
 sunv = sunvector(metjd,-33.695,-70.0033,-4) 
@@ -55,13 +55,13 @@ zenith = sunpos(sunv)[,2]
 
 # Compute direct and diffuse beam irradiance 
 Idirdif = insolation(zenith,metjd,4640,90,
-	meteoandes$RH,meteoandes$Tair+273.15,0.02,0.55)
+	meteoandes$RH,meteoandes$Tair+273.15,0.003,0.55)
 
 # modify for angle of incidence on horizontal surface (pyranometer)
-cos_inc_sfc=sunv\%*\%as.vector(normalvector(0,0)) ## or sum(sunv*normalvector(0,0))
+cos_inc_sfc = sunv\%*\%as.vector(normalvector(0,0)) ## or sum(sunv*normalvector(0,0))
 
 # set to zero values with no indicent light
-cos_inc_sfc[cos_inc_sfc<0]=0
+cos_inc_sfc[cos_inc_sfc<0] = 0
 
 # Add direct and diffuse simulated radiation on horizontal surface
 Isim  = Idirdif[,1] * cos_inc_sfc + Idirdif[,2]
@@ -84,36 +84,36 @@ lines(meteodate,1.1*Isim,col=3)
 
 
 ## Calculate insolation on the island of La Palma, Spain on the 21.03.2013
-## reduced resolution DEM from SRTM, http://www2.jpl.nasa.gov/srtm/
-zipfile=tempfile()
-download.file("http://www.meteoexploration.com/R/insol/data/demlapalma.asc.zip",zipfile)
-header=read.table(unz(zipfile,'demlapalma.asc'),nrows=6)
+## reduced resolution DEM from SRTM, https://www2.jpl.nasa.gov/srtm/
+zipfile = tempfile()
+download.file("https://meteoexploration.com/R/insol/data/demlapalma.asc.zip",zipfile)
+header = read.table(unz(zipfile,'demlapalma.asc'),nrows=6)
 dem = read.table(unz(zipfile,'demlapalma.asc'),skip=6)
-dem=as.matrix(dem)
+dem = as.matrix(dem)
 unlink(zipfile)
-cellsize=header[5,2]
-cgr=cgrad(dem,cellsize)
-height=750
-visibility=30
-RH=80
-tempK=288
-tmz=0
-year=2013
-month=3
-day=21
-timeh=12
-jd=JDymd(year,month,day,hour=timeh)
-Iglobal=array(0,dim=dim(dem))
-deltat=0.5
-lat=28.135
-lon=-17.247
-dayl=daylength(lat,lon,jd,0)
+cellsize = header[5,2]
+cgr = cgrad(dem,cellsize)
+height = 750
+visibility = 30
+RH = 80
+tempK = 288
+tmz = 0
+year = 2013
+month = 3
+day = 21
+timeh = 12
+jd = JDymd(year,month,day,hour=timeh)
+Iglobal = array(0,dim=dim(dem))
+deltat = 0.5
+lat = 28.135
+lon = -17.247
+dayl = daylength(lat,lon,jd,0)
 for (srs in seq(dayl[1],dayl[2],deltat)){
-	jd=JDymd(year,month,day,hour=srs)
-	sv=sunvector(jd,lat,lon,tmz)
-	hsh=hillshading(cgr,sv)
-	sh=doshade(dem,sv,cellsize)
-	zenith=sunpos(sv)[2]
+	jd = JDymd(year,month,day,hour=srs)
+	sv = sunvector(jd,lat,lon,tmz)
+	hsh = hillshading(cgr,sv)
+	sh = doshade(dem,sv,cellsize)
+	zenith = sunpos(sv)[2]
 	Idirdif = insolation(zenith,jd,height,visibility,RH,tempK,0.002,0.15)
 	## direct radiation modified by terrain + diffuse irradiation (skyviewfactor ignored)
 	## values in J/m^2
@@ -129,50 +129,49 @@ contour(t(dem[nrow(dem):1,]),lwd=.25,col='sienna1',add=TRUE,levels=seq(0,2500,50
 ## The same using raster
 require(rgdal)
 require(raster)
-demfile=tempfile()
-download.file("http://www.meteoexploration.com/R/insol/data/demlapalma.tif",demfile)
-dem=raster(demfile)
+demfile = tempfile()
+download.file("https://meteoexploration.com/R/insol/data/demlapalma.tif",demfile)
+dem = raster(demfile)
 plot(dem)
-cgr=cgrad(dem)
-demm=raster:::as.matrix(dem)
-dl=res(dem)[1]
+cgr = cgrad(dem)
+demm = raster:::as.matrix(dem)
+dl = res(dem)[1]
 ## Isolation at 30 min interval over the length of the day
 ## RH and temp would cahnge over the dy, here we use a constant value for simplicity
-height=750
-visibility=30
-RH=80
-tempK=288
-tmz=0
-year=2013
-month=3
-day=21
-timeh=12
-jd=JDymd(year,month,day,hour=timeh)
-Iglobal=array(0,dim=dim(demm))
-deltat=0.5
-lat=28.135
-lon=-17.247
-dayl=daylength(lat,lon,jd,0)
+height = 750
+visibility = 30
+RH = 80
+tempK = 288
+tmz = 0
+year = 2013
+month = 3
+day = 21
+timeh = 12
+jd = JDymd(year,month,day,hour=timeh)
+Iglobal = array(0,dim=dim(demm))
+deltat = 0.5
+lat = 28.135
+lon = -17.247
+dayl = daylength(lat,lon,jd,0)
 for (srs in seq(dayl[1],dayl[2],deltat)){
-	jd=JDymd(year,month,day,hour=srs)
-	sv=sunvector(jd,lat,lon,tmz)
-	hsh=hillshading(cgr,sv)
-	sh=doshade(demm,sv,dl)
-	zenith=sunpos(sv)[2]
+	jd = JDymd(year,month,day,hour=srs)
+	sv = sunvector(jd,lat,lon,tmz)
+	hsh = hillshading(cgr,sv)
+	sh = doshade(demm,sv,dl)
+	zenith = sunpos(sv)[2]
 	Idirdif = insolation(zenith,jd,height,visibility,RH,tempK,0.002,0.15)
 	## direct radiation modified by terrain + diffuse irradiation (skyviewfactor ignored)
 	## values in J/m^2
 	Iglobal = Iglobal + (Idirdif[,1] * hsh + Idirdif[,2] )*3600*deltat
 }
 ## rasterize to plot nicely
-Iglobal=raster(Iglobal,crs=projection(dem))
-extent(Iglobal)=extent(dem)
+Iglobal = raster(Iglobal,crs=projection(dem))
+extent(Iglobal) = extent(dem)
 plot(Iglobal*1e-6,col=grey(1:100/100),
- 	legend.args=list(text=expression(paste('Insolation MJ ',m^-2)), side=4,line=2.5))
-contour(dem,lwd=.5,col='sienna1',add=TRUE,levels=seq(0,2500,500))
-contour(dem,lwd=.25,col='sienna1',add=TRUE,levels=seq(0,2500,50),drawlabels=FALSE)
+ 	legend.args = list(text=expression(paste('Insolation MJ ',m^-2)), side=4,line=2.5))
+contour(dem,lwd = 0.5,col='sienna1',add=TRUE,levels=seq(0,2500,500))
+contour(dem,lwd = 0.25,col='sienna1',add=TRUE,levels=seq(0,2500,50),drawlabels=FALSE)
 unlink(demfile)
 }
 
 }
-
