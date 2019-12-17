@@ -87,7 +87,6 @@ image(t(hshsh[nrow(sh):1,]),col=grey(1:100/100))
 \dontrun{
 ## plot cast shadows on mountain terrain using raster
 sv = normalvector(65,315)
-require(rgdal)
 require(raster)
 demfile = tempfile()
 download.file("https://meteoexploration.com/R/insol/data/dempyrenees.tif",demfile)

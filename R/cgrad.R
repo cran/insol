@@ -4,7 +4,7 @@ function(dem, dlx=0, dly=dlx, cArea=FALSE){
         cat("USAGE: cgrad(dem, dx, dly=dlx, cArea=FALSE) \n")
         return()
     }
-	if (class(dem)=="RasterLayer") {
+	if ("RasterLayer" %in% class(dem)) {
 		dlx = raster::res(dem)[1]
 		dly = raster::res(dem)[2]
 		dem = raster::as.matrix(dem)

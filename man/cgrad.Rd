@@ -94,7 +94,6 @@ plot(tan(radians(slpg)),grdarea)
 
 \dontrun{
 ## Use raster for better display and keep the dem projection
-require(rgdal)
 require(raster)
 demfile = tempfile()
 download.file("https://meteoexploration.com/R/insol/data/dempyrenees.tif",demfile)

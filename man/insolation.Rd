@@ -127,7 +127,6 @@ contour(t(dem[nrow(dem):1,]),lwd=.25,col='sienna1',add=TRUE,levels=seq(0,2500,50
 
 \dontrun{
 ## The same using raster
-require(rgdal)
 require(raster)
 demfile = tempfile()
 download.file("https://meteoexploration.com/R/insol/data/demlapalma.tif",demfile)

@@ -47,7 +47,6 @@ image(t(aspectdem[nrow(aspectdem):1,]),col=grey(1:100/100))
 
 
 \dontrun{ ## raster package display nicer than image and handles projections:
-require(rgdal)
 require(raster)
 demfile = tempfile()
 download.file("https://meteoexploration.com/R/insol/data/dempyrenees.tif",demfile)

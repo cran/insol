@@ -7,7 +7,7 @@ doshade <- function(dem,sv,dl=0,sombra=dem) {
 		return()
 	}
 	switchdem = 0
-		if (class(dem)=="RasterLayer") {
+		if ("RasterLayer" %in% class(dem))  {
 			switchdem = 1
 			dproj = raster::projection(dem)
 			dext = raster::extent(dem)

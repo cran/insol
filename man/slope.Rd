@@ -39,7 +39,6 @@ image(t(slopedem[nrow(slopedem):1,]),col=grey(100:1/100))
 
 ## similar but using raster
 \dontrun{
-require(rgdal)
 require(raster)
 demfile = tempfile()
 download.file("https://meteoexploration.com/R/insol/data/dempyrenees.tif",demfile)
