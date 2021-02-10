@@ -71,7 +71,7 @@ image(t(xcomponent[nrow(xcomponent):1,]) ,col=grey(1:10/10))
 image(t(ycomponent[nrow(ycomponent):1,]) ,col=grey(1:10/10))
 image(t(zcomponent[nrow(zcomponent):1,]) ,col=grey(1:10/10))
 
-
+\dontrun{
 ## Surface area of every grid cell in a mountain region
 ## Steep slopes correspond to larger surface area per grid cell
 zipfile = tempfile()
@@ -92,7 +92,6 @@ plot(slpg,grdarea)
 ## but in a DEM the slope of the grid cell depends on 4 points in 3D
 plot(tan(radians(slpg)),grdarea)
 
-\dontrun{
 ## Use raster for better display and keep the dem projection
 require(raster)
 demfile = tempfile()

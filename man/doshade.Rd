@@ -61,6 +61,7 @@ image(t(sh[nrow(sh):1,]),col=grey(1:100/100))
 contour(mm,add=TRUE,col='sienna1',nlevels=25)
 ## (mm is symmetrical, no need to rotate as for shadows)
 
+\dontrun{
 ## plot cast shadows on mountain terrain, sun at NW, 25 degrees elevation
 zipfile = tempfile()
 download.file("https://meteoexploration.com/R/insol/data/dempyrenees.asc.zip",zipfile)
@@ -84,7 +85,6 @@ hshsh = hsh*sh
 image(t(hshsh[nrow(sh):1,]),col=grey(1:100/100))
 
 
-\dontrun{
 ## plot cast shadows on mountain terrain using raster
 sv = normalvector(65,315)
 require(raster)

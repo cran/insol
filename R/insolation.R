@@ -14,7 +14,7 @@ function(zenith,jd,height,visibility,RH,tempK,O3,alphag) {
 	wvap_s =  wvapsat(tempK)
 # 	#Wprec = 0.493*(RH/100.0)*wvap_s/tempK   #precipitable water in cm Leckner (1978)
 	Wprec = 46.5*(RH/100.0)*wvap_s/tempK  #Prata 1996
-	rho2 = sunr(jd)
+	rho2 = (1/sunr(jd))^2
 	TauR = exp((-.09030*(Ma^0.84) )*(1.0+Ma-(Ma^1.01)) )
 	TauO = 1.0-( ( 0.1611*(O3*Mr)*(1.0+139.48*(O3*Mr))^(-0.3035) ) - 
 			0.002715*(O3*Mr)*( 1.0+0.044*(O3*Mr)+0.0003*(O3*Mr)^2 )^(-1))
@@ -23,11 +23,11 @@ function(zenith,jd,height,visibility,RH,tempK,O3,alphag) {
 			6.385*(Wprec*Mr) )^(-1)
 	TauA = ( 0.97-1.265*(visibility^(-0.66)) )^(Ma^0.9)   #Machler, 1983
 	TauTotal = TauR*TauO*TauG*TauW*TauA   
-	In = 0.9751*(1/rho2)*Isc*TauTotal
+	In = 0.9751*rho2*Isc*TauTotal
 	tauaa = 1.0-(1.0-ssctalb)*(1.0-Ma+Ma^1.06)*(1.0-TauA)
-	Idr = 0.79*(1/rho2)*Isc*cos(theta)*TauO*TauG*TauW*tauaa*0.5*(1.0-TauR)/(1.0-Ma+Ma^(1.02))
+	Idr = 0.79*rho2*Isc*cos(theta)*TauO*TauG*TauW*tauaa*0.5*(1.0-TauR)/(1.0-Ma+Ma^(1.02))
 	tauas = (TauA)/tauaa
-	Ida = 0.79*(1/rho2)*Isc*cos(theta)*TauO*TauG*TauW*tauaa*Fc*(1.0-tauas)/(1.0-Ma+Ma^1.02)
+	Ida = 0.79*rho2*Isc*cos(theta)*TauO*TauG*TauW*tauaa*Fc*(1.0-tauas)/(1.0-Ma+Ma^1.02)
 	alpha_atmos = 0.0685+(1.0-Fc)*(1.0-tauas)
 	Idm = (In*cos(theta)+Idr+Ida)*alphag*alpha_atmos/(1.0-alphag*alpha_atmos)
 	Id = Idr+Ida+Idm

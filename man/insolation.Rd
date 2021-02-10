@@ -17,7 +17,7 @@ insolation(zenith, jd, height, visibility, RH, tempK, O3, alphag)
   \item{visibility}{ Visibility [km]. }
   \item{RH}{ Relative humidity [\%]. }
   \item{tempK}{ Air temperature [K]. }
-  \item{O3}{Ozone thickness [m]. }
+  \item{O3}{Ozone thickness [cm]. }
   \item{alphag}{Albedo of the surrounding terrain [0 to 1]. }
 }
 \details{ See \url{https://disc.gsfc.nasa.gov/datasets?page=1&source=AURA\%20OMI} for ozone data.}
@@ -36,8 +36,8 @@ Iqbal, M. (1983) \emph{An Introduction to Solar Radiation}, Academic Press, Toro
 \seealso{ \code{\link{doshade}}, \code{\link{hillshading}}, \code{\link{sunvector}} }
 
 \examples{
-insolation(30,2458656,3200,28,60,278.15,0.003,0.2)
-insolation(30,JDymd(2019,6,21),3200,28,60,278.15,0.003,0.2)
+insolation(30,2458656,3200,28,60,278.15,0.3,0.2)
+insolation(30,JDymd(2019,6,21),3200,28,60,278.15,0.3,0.2)
 
 # Compare measured and modelled insolation
 
@@ -50,12 +50,12 @@ meteodate = as.POSIXct(strptime(paste(meteoandes$year,meteoandes$doy,
 metjd = JD(meteodate)
 
 
-sunv = sunvector(metjd,-33.695,-70.0033,-4) 
+sunv = sunvector(metjd,-33.695,-70.0033,-3) 
 zenith = sunpos(sunv)[,2]
 
 # Compute direct and diffuse beam irradiance 
 Idirdif = insolation(zenith,metjd,4640,90,
-	meteoandes$RH,meteoandes$Tair+273.15,0.003,0.55)
+	meteoandes$RH,meteoandes$Tair+273.15,0.3,0.55)
 
 # modify for angle of incidence on horizontal surface (pyranometer)
 cos_inc_sfc = sunv\%*\%as.vector(normalvector(0,0)) ## or sum(sunv*normalvector(0,0))
@@ -75,6 +75,17 @@ polygon(c(meteodate, rev(meteodate)), c(meteoandes$pyra1*(1+0.1),
 
 # add the simulated insolation
 lines(meteodate,Isim,col=4)
+
+#check if discrepancy is due to station tilted 10 degrees north
+cos_inc_sfc = sunv\%*\%as.vector(normalvector(15,355)) ## or sum(sunv*normalvector(15,355))
+cos_inc_sfc[cos_inc_sfc<0] = 0
+Isim  = Idirdif[,1] * cos_inc_sfc + Idirdif[,2]
+plot(meteodate,meteoandes$pyra1,'l',col=2)
+polygon(c(meteodate, rev(meteodate)), c(meteoandes$pyra1*(1+0.1),
+	rev(meteoandes$pyra1*(1-0.1))),col = "#ff000033", border = NA)
+lines(meteodate,Isim,col=4)
+
+
 
 # We measured that diffuse reflected solar radiation from the surrounding mountains 
 # covered in snow could be up to 10\% of total incoming radiation. 
@@ -114,7 +125,7 @@ for (srs in seq(dayl[1],dayl[2],deltat)){
 	hsh = hillshading(cgr,sv)
 	sh = doshade(dem,sv,cellsize)
 	zenith = sunpos(sv)[2]
-	Idirdif = insolation(zenith,jd,height,visibility,RH,tempK,0.002,0.15)
+	Idirdif = insolation(zenith,jd,height,visibility,RH,tempK,0.2,0.15)
 	## direct radiation modified by terrain + diffuse irradiation (skyviewfactor ignored)
 	## values in J/m^2
 	Iglobal = Iglobal + (Idirdif[,1] * hsh + Idirdif[,2] )*3600*deltat	
@@ -158,7 +169,7 @@ for (srs in seq(dayl[1],dayl[2],deltat)){
 	hsh = hillshading(cgr,sv)
 	sh = doshade(demm,sv,dl)
 	zenith = sunpos(sv)[2]
-	Idirdif = insolation(zenith,jd,height,visibility,RH,tempK,0.002,0.15)
+	Idirdif = insolation(zenith,jd,height,visibility,RH,tempK,0.2,0.15)
 	## direct radiation modified by terrain + diffuse irradiation (skyviewfactor ignored)
 	## values in J/m^2
 	Iglobal = Iglobal + (Idirdif[,1] * hsh + Idirdif[,2] )*3600*deltat

@@ -34,6 +34,7 @@ slpwe = rep(1,10)  \%o\% c(1:5,4:1)
 cgr = cgrad(slpwe,1)
 aspect(cgr,degrees=TRUE)
 
+\dontrun{ ## raster package display nicer than image and handles projections:
 # Calculate the aspect of a rough mountain area in the pyrinees
 zipfile = tempfile()
 download.file("https://meteoexploration.com/R/insol/data/dempyrenees.asc.zip",zipfile)
@@ -45,8 +46,6 @@ cellsize = header[5,2]
 aspectdem = aspect(cgrad(dem,cellsize),degrees=TRUE)
 image(t(aspectdem[nrow(aspectdem):1,]),col=grey(1:100/100))
 
-
-\dontrun{ ## raster package display nicer than image and handles projections:
 require(raster)
 demfile = tempfile()
 download.file("https://meteoexploration.com/R/insol/data/dempyrenees.tif",demfile)
